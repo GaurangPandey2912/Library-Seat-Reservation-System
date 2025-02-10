@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './Seatmap.css';
 
-const SeatReservation = () => {
+const SeatSelector = () => {
   const [seats, setSeats] = useState(Array(10).fill(false)); // Array of 10 seats, false means unreserved
   const [reservedSeat, setReservedSeat] = useState(null);
 
@@ -50,4 +50,4 @@ const SeatReservation = () => {
   );
 };
 
-export default SeatReservation;
+export default SeatSelector;
