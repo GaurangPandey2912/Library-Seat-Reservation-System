@@ -10,7 +10,7 @@ body {
 nav {
   background: #000000;
   color: white;
-  padding: 0.1rem 0.1rem; /* Reduced padding */
+  padding: 0.1rem 0.1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,7 +19,7 @@ nav ul {
   list-style: none;
   display: flex;
   gap: 15px;
-  font-size:1rem
+  font-size:1rem;
 }
 nav ul li a{
   text-decoration: none;
@@ -48,13 +48,14 @@ nav ul li {
 nav ul li a:hover {
   color: #d1ecff;
 }
+
 /* Authentication Form Styling */
 .auth-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin-top: 60px; /* Adjust to prevent overlap with fixed navbar */
+  margin-top: 60px;
 }
 
 .auth-box {
@@ -113,6 +114,7 @@ nav ul li a:hover {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
+  color: black; /* Ensure label text is visible */
 }
 
 /* Styled Input Fields */
@@ -124,6 +126,8 @@ nav ul li a:hover {
   font-size: 16px;
   transition: border 0.3s, box-shadow 0.3s;
   outline: none;
+  color: black; /* Ensure text inside input fields is visible */
+  background-color: white; /* Keep background white */
 }
 
 .styled-input:focus {
@@ -137,8 +141,9 @@ nav ul li a:hover {
   align-items: center;
 }
 
-.checkbox-container input {
-  margin-right: 5px;
+.checkbox-container label {
+  color: black; /* Make text visible against the background */
+  font-weight: bold;
 }
 
 /* Submit Button */
