@@ -1,9 +1,10 @@
 /* General Styles */
 .seat-selector {
     text-align: center;
+    
     background-color: black;
     color: teal;
-    padding: 20px;
+    padding-top: 100px;
     font-family: Arial, sans-serif;
   }
   

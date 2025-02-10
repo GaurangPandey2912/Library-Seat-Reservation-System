@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Seatmap.css";
+import Navbar from "../Components/navbar";
 
 const floors = {
   "Ground Floor": [
@@ -74,6 +75,7 @@ const SeatSelector = () => {
 
   return (
     <div className="seat-selector">
+      <Navbar />
       <h2>Library Seat Reservation</h2>
       <div className="floor-selection">
         {Object.keys(floors).map((floor) => (
