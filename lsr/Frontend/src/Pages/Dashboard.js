@@ -25,12 +25,12 @@ const LibraryDashboard = () => {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "100vh", backgroundColor: "black", color: "#008080", padding: "20px", position: "relative" }}>
-      <div style={{ position: "absolute", top: "20px", width: "80%", backgroundColor: "#007070", color: "white", boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", borderRadius: "16px", padding: "24px", display: "flex", justifyContent: "space-around", alignItems: "center" }}>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <div style={{ display: "flex", flexDirection: "column", maxHeight: "100vh", backgroundColor: "black", color: "#008080", padding: "20px" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+        <div style={{ width: "40%", backgroundColor: "#007070", color: "white", boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "column", alignItems: "center" }}>
           <h2 style={{ fontSize: "18px", fontWeight: "600", marginBottom: "8px" }}>Seats Booked</h2>
           <div style={{ width: "96px", height: "96px", backgroundColor: "#008080", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%", padding: "10px" }}>
-            <div style={{ width: "100%", height: "100%" }}>
+            <div style={{ width: "100%",marginBottom:"0" }}>
               <CircularProgressbar
                 value={bookedPercentage}
                 text={`${Math.round(bookedPercentage)}%`}
@@ -44,10 +44,22 @@ const LibraryDashboard = () => {
             </div>
           </div>
         </div>
+        <div style={{ width: "50%", backgroundColor: "#007070", padding: "20px", borderRadius: "16px", boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)" }}>
+          <h2 style={{ color: "white", textAlign: "center" }}>People Count per Floor</h2>
+          <Bar data={peopleData} options={{ responsive: true, plugins: { legend: { display: false } } }} />
+        </div>
       </div>
-      <div style={{ marginTop: "200px", width: "60%", backgroundColor: "#007070", padding: "20px", borderRadius: "16px", boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)" }}>
-        <h2 style={{ color: "white", textAlign: "center" }}>People Count per Floor</h2>
-        <Bar data={peopleData} options={{ responsive: true, plugins: { legend: { display: false } } }} />
+      <div style={{ marginTop: "-10%", display: "flex", flexDirection: "column", width: "40%", gap: "10px" }}>
+        <button style={{ padding: "10px 20px", backgroundColor: "grey", border: "none", color: "white", fontSize: "16px", borderRadius: "8px", cursor: "pointer", width: "100%", transition: "background-color 0.3s" }}
+          onMouseOver={(e) => e.target.style.backgroundColor = "#008080"}
+          onMouseOut={(e) => e.target.style.backgroundColor = "grey"}>
+          Book Seat
+        </button>
+        <button style={{ padding: "10px 20px", backgroundColor: "grey", border: "none", color: "white", fontSize: "16px", borderRadius: "8px", cursor: "pointer", width: "100%", transition: "background-color 0.3s" }}
+          onMouseOver={(e) => e.target.style.backgroundColor = "#008080"}
+          onMouseOut={(e) => e.target.style.backgroundColor = "grey"}>
+          Issue Book
+        </button>
       </div>
       <style jsx global>{`
         body {
