@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Navbar from "../Components/navbar"; // Import your existing Navbar component
 import "./Login.css";
 
 const Login = () => {
@@ -20,17 +21,8 @@ const Login = () => {
 
   return (
     <>
-      {/* Navbar */}
-      <nav className="navbar">
-        <div className="nav-logo">
-          <img src="/brandlogo.png" alt="Brand Logo" className="brand-logo" />
-        </div>
-        <ul className="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+      {/* Importing the Navbar component */}
+      <Navbar />
 
       {/* Authentication Container */}
       <div className="auth-container">

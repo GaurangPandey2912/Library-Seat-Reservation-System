@@ -1,7 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"; // ✅ Correct import
 import "./HomePage.css";
 
 const HomePage = () => {
+  const navigate = useNavigate(); // ✅ Correct function usage
+
   return (
     <div>
       {/* Navbar */}
@@ -14,7 +17,7 @@ const HomePage = () => {
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
           <li>
-            <a href="#Login" className="navbar-signup-login">SignUp/LogIn</a>
+            <a href="login" className="navbar-signup-login">SignUp/LogIn</a>
           </li>
         </ul>
       </nav>
@@ -22,9 +25,11 @@ const HomePage = () => {
       {/* Hero Section */}
       <header>
         <h2>OpenChair</h2>
-        <p>Your trusted solution for silence related issues. <br />
-            Reserve. Read. Relax.</p>
-        <button>Select Library</button>
+        <p>Your trusted solution for silence-related issues. <br />
+          Reserve. Read. Relax.
+        </p>
+        <button onClick={() => navigate("/SelectCity")}>Select Library</button> 
+        {/* ✅ Navigate to '/select-city' */}
       </header>
 
       {/* Features Section */}

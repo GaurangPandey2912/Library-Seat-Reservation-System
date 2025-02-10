@@ -20,8 +20,19 @@ const LibraryCatalogue = () => {
   };
 
   return (
-    <div className="container">
-      <div className="background-overlay"></div>
+    <div
+      style={{
+        background: `url("https://c4.wallpaperflare.com/wallpaper/728/926/542/library-ladders-candles-shelves-wallpaper-preview.jpg") no-repeat center center fixed`,
+        backgroundSize: "cover",
+        minHeight: "100vh", // Ensures it covers the full screen
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "20px"
+      }}
+    >
       <div className="header">
         <h1 className="title">Library Catalogue</h1>
         <div className="search-container">
