@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import Navbar from "../Components/navbar"; // Import your existing Navbar component
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { auth } from "../firebase";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import Navbar from "../Components/navbar";
 import "./Login.css";
 
 const Login = () => {
@@ -8,35 +11,33 @@ const Login = () => {
   const [error, setError] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
+  const navigate = useNavigate(); // Initialize navigate
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !password) {
       setError("Both fields are required!");
       return;
     }
-    setError("");
-    alert(`${isSignup ? "Signed up" : "Logged in"} as: ${email} ${isAdmin ? "(Admin)" : ""}`);
+
+    try {
+      if (isSignup) {
+        await createUserWithEmailAndPassword(auth, email, password);
+        alert("Sign-up successful! You can now log in.");
+      } else {
+        await signInWithEmailAndPassword(auth, email, password);
+        alert(`Logged in as: ${email} ${isAdmin ? "(Admin)" : ""}`);
+        navigate("/Dashboard"); // Redirect to the dashboard
+      }
+      setError("");
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
     <>
-      {/* Importing the Navbar component */}
-      <nav>
-        <div>
-          <img src="/brandlogo.png" alt="Brand Logo" className="brand-logo" />
-        </div>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li>
-            <a href="login" className="navbar-signup-login">SignUp/LogIn</a>
-          </li>
-        </ul>
-      </nav>
-
-      {/* Authentication Container */}
+      <Navbar />
       <div className="auth-container">
         <div className="auth-box">
           <div className="toggle-buttons">

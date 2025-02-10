@@ -40,6 +40,8 @@ function App() {
           <Route path="/selectCity" element={<MetroCities />} />
           <Route path="/bookIssue" element={<BookIssue />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/" element={<Login />} />
+        <Route path="/Dashboard" element={<LibraryDashboard />} />
 
 
 
