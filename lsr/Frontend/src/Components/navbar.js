@@ -1,15 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav style={styles.navbar}>
       <img src="/brandlogo.png" alt="Brand Logo" style={styles.brandLogo} />
       <ul style={styles.navList}>
-        <li><a href="#stats" style={styles.navItem}>Stats</a></li>
-        <li><a href="#bookSeat" style={styles.navItem}>Book Seats</a></li>
-        <li><a href="#issue" style={styles.navItem}>Issue Book</a></li>
+        <li><Link to="/Dashboard" style={styles.navItem}>Stats</Link></li>
+        <li><Link to="/SeatMap" style={styles.navItem}>Book Seats</Link></li>
+        <li><Link to="/BookIssue" style={styles.navItem}>Issue Book</Link></li>
         <li style={styles.logoutButton}>
-          <a href="#logout" style={styles.logoutItem}>Logout</a>
+          <Link to="/logout" style={styles.logoutItem}>Logout</Link>
         </li>
       </ul>
     </nav>
@@ -28,7 +29,7 @@ const styles = {
     width: "100%",
     height: "60px",
     zIndex: 1000,
-    boxShadow: "0px 4px 10px rgba(255, 255, 255, 0.2)", // 👈 Added shadow effect
+    boxShadow: "0px 4px 10px rgba(255, 255, 255, 0.2)",
   },
   brandLogo: {
     height: "50px",
@@ -56,7 +57,7 @@ const styles = {
     transition: "background 0.3s ease-in-out, color 0.3s ease-in-out",
   },
   logoutButton: {
-    marginRight: "20px", // 👈 Margin applied only to Logout button
+    marginRight: "20px",
   },
   logoutItem: {
     display: "flex",
@@ -68,7 +69,7 @@ const styles = {
     height: "100%",
     padding: "0 20px",
     backgroundColor: "black",
-    color: "teal", // 👈 Changed Logout button text color to teal
+    color: "teal",
     transition: "background 0.3s ease-in-out, color 0.3s ease-in-out",
   },
 };

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./BookIssue.css";
+import Navbar from "../Components/navbar";
 
 const LibraryCatalogue = () => {
   const [search, setSearch] = useState("");
@@ -33,6 +34,7 @@ const LibraryCatalogue = () => {
         padding: "20px"
       }}
     >
+        <Navbar />
       <div className="header">
         <h1 className="title">Library Catalogue</h1>
         <div className="search-container">
