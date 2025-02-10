@@ -3,27 +3,29 @@ import "./Seatmap.css";
 
 const floors = {
   "Ground Floor": [
-    ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10"],
-    ["G11", "G12", "G13", "G14", "G15", "G16", "G17", "G18", "G19", "G20"],
-    ["G21", "G22", "G23", "G24", "G25", "G26", "G27", "G28", "G29", "G30"],
-    ["G31", "G32", "G33", "G34", "G35", "G36", "G37", "G38", "G39", "G40"],
-    ["G41", "G42", "G43", "G44", "G45", "G46", "G47", "G48", "G49", "G50"]
+    ["W1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "W10"],
+    ["W11", "G12", "G13", "G14", "G15", "G16", "G17", "G18", "G19", "W20"],
+    ["W21", "G22", "G23", "G24", "G25", "G26", "G27", "G28", "G29", "W30"],
+    ["WC31", "C32", "C33", "C34", "C35", "C36", "C37", "C38", "C39", "WC40"],
+    ["WC41", "C42", "C43", "C44", "C45", "C46", "C47", "C48", "C49", "WC50"]
   ],
   "First Floor": [
-    ["F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10"],
-    ["F11", "F12", "F13", "F14", "F15", "F16", "F17", "F18", "F19", "F20"],
-    ["F21", "F22", "F23", "F24", "F25", "F26", "F27", "F28", "F29", "F30"],
-    ["F31", "F32", "F33", "F34", "F35", "F36", "F37", "F38", "F39", "F40"],
-    ["F41", "F42", "F43", "F44", "F45", "F46", "F47", "F48", "F49", "F50"]
+    ["W1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "W10"],
+    ["W11", "F12", "F13", "F14", "F15", "F16", "F17", "F18", "F19", "W20"],
+    ["W21", "F22", "F23", "F24", "F25", "F26", "F27", "F28", "F29", "W30"],
+    ["WC31", "C32", "C33", "C34", "C35", "C36", "C37", "C38", "C39", "WC40"],
+    ["WC41", "C42", "C43", "C44", "C45", "C46", "C47", "C48", "C49", "WC50"]
   ],
   "Second Floor": [
-    ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10"],
-    ["S11", "S12", "S13", "S14", "S15", "S16", "S17", "S18", "S19", "S20"],
-    ["S21", "S22", "S23", "S24", "S25", "S26", "S27", "S28", "S29", "S30"],
-    ["S31", "S32", "S33", "S34", "S35", "S36", "S37", "S38", "S39", "S40"],
-    ["S41", "S42", "S43", "S44", "S45", "S46", "S47", "S48", "S49", "S50"]
+    ["W1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "W10"],
+    ["W11", "S12", "S13", "S14", "S15", "S16", "S17", "S18", "S19", "W20"],
+    ["W21", "S22", "S23", "S24", "S25", "S26", "S27", "S28", "S29", "W30"],
+    ["WC31", "C32", "C33", "C34", "C35", "C36", "C37", "C38", "C39", "WC40"],
+    ["WC41", "C42", "C43", "C44", "C45", "C46", "C47", "C48", "C49", "WC50"]
   ]
 };
+
+const chargingSeats = new Set(["G3", "G6", "G9", "G12", "G15", "G18", "G21", "G24", "G27", "G30", "C32", "C35", "C38", "C41", "C44", "C47", "W1", "W10", "WC31", "WC40", "WC41", "WC50"]);
 
 const SeatSelector = () => {
   const [selectedFloor, setSelectedFloor] = useState("Ground Floor");
@@ -45,10 +47,22 @@ const SeatSelector = () => {
     
     seatLayout.forEach((row) => {
       row.forEach((seat) => {
-        if (
-          (preferences.chargingPoint && Math.random() > 0.7) ||
-          (preferences.window && Math.random() > 0.5) ||
-          (preferences.cubicle && Math.random() > 0.6)
+        if (preferences.window && preferences.cubicle) {
+          if (seat === "WC41" || seat === "WC50") {
+            bestSeats.push(seat);
+          }
+        } else if (preferences.chargingPoint && preferences.cubicle) {
+          if (chargingSeats.has(seat) && seat.startsWith("C")) {
+            bestSeats.push(seat);
+          }
+        } else if (preferences.chargingPoint && preferences.window) {
+          if (chargingSeats.has(seat) && seat.startsWith("W")) {
+            bestSeats.push(seat);
+          }
+        } else if (
+          (preferences.chargingPoint && chargingSeats.has(seat)) ||
+          (preferences.window && seat.startsWith("W")) ||
+          (preferences.cubicle && seat.startsWith("C"))
         ) {
           bestSeats.push(seat);
         }
