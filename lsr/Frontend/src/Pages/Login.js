@@ -19,56 +19,77 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-      <div className="auth-box">
-        <div className="toggle-buttons">
-          <button
-            className={!isSignup ? "active" : ""}
-            onClick={() => setIsSignup(false)}
-          >
-            Login
-          </button>
-          <button
-            className={isSignup ? "active" : ""}
-            onClick={() => setIsSignup(true)}
-          >
-            Sign Up
-          </button>
+    <>
+      {/* Navbar */}
+      <nav className="navbar">
+        <div className="nav-logo">
+          <img src="/brandlogo.png" alt="Brand Logo" className="brand-logo" />
         </div>
-        <h2 className="title">{isSignup ? "Sign Up" : "Login"}</h2>
-        {error && <p className="error">{error}</p>}
-        <form onSubmit={handleSubmit} className="form">
-          <label>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-          />
+        <ul className="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
 
-          <label>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter your password"
-          />
-
-          <div className="checkbox-container">
-            <input
-              type="checkbox"
-              checked={isAdmin}
-              onChange={() => setIsAdmin(!isAdmin)}
-            />
-            <label>Login as Admin</label>
+      {/* Authentication Container */}
+      <div className="auth-container">
+        <div className="auth-box">
+          <div className="toggle-buttons">
+            <button
+              className={!isSignup ? "active" : ""}
+              onClick={() => setIsSignup(false)}
+            >
+              Login
+            </button>
+            <button
+              className={isSignup ? "active" : ""}
+              onClick={() => setIsSignup(true)}
+            >
+              Sign Up
+            </button>
           </div>
+          <h2 className="auth-title">{isSignup ? "Sign Up" : "Login"}</h2>
+          {error && <p className="auth-error">{error}</p>}
+          <form onSubmit={handleSubmit} className="auth-form">
+            <div className="form-group">
+              <label>Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                className="styled-input"
+              />
+            </div>
 
-          <button type="submit" className="submit-button">
-            {isSignup ? "Sign Up" : "Login"}
-          </button>
-        </form>
+            <div className="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                className="styled-input"
+              />
+            </div>
+
+            <div className="form-group checkbox-container">
+              <input
+                type="checkbox"
+                checked={isAdmin}
+                onChange={() => setIsAdmin(!isAdmin)}
+              />
+              <label>Login as Admin</label>
+            </div>
+
+            <button type="submit" className="auth-submit">
+              {isSignup ? "Sign Up" : "Login"}
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

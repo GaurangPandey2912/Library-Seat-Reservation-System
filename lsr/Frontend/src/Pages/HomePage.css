@@ -8,6 +8,13 @@ body {
   }
   
   /* Navbar */
+ 
+
+  .brand-logo {
+    width: 250px; /* Adjust as needed */
+    height: 80px;/* Prevents distortion */
+  }
+  
   nav {
     background: #000000;
     color: white;
@@ -16,13 +23,6 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-
-  .brand-logo {
-    width: 250px; /* Adjust as needed */
-    height: 80px;/* Prevents distortion */
-  }
-  
-  
   nav ul {
     list-style: none;
     display: flex;
@@ -88,7 +88,7 @@ body {
   }
   
   header button:hover {
-    background: #8ebae6;
+    background:  #12c1dc;
     transform: scale(1.1);
   }
   

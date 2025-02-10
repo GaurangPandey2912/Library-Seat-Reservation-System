@@ -1,93 +1,160 @@
+/* General Styles */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-  }
-  
-  .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  
-  .auth-box {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
-    text-align: center;
-  }
-  
-  .toggle-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .toggle-buttons button {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    background: #ddd;
-    transition: 0.3s;
-  }
-  
-  .toggle-buttons .active {
-    background: #00796b;
-    color: white;
-  }
-  
-  .title {
-    font-size: 24px;
-    color: #00796b;
-    margin-bottom: 20px;
-  }
-  
-  .error {
-    color: red;
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
-  .form label {
-    display: block;
-    text-align: left;
-    margin: 5px 0;
-  }
-  
-  .form input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .checkbox-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .checkbox-container input {
-    margin-right: 5px;
-  }
-  
-  .submit-button {
-    background: #00796b;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  .submit-button:hover {
-    background: #004d40;
-  }
-  
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+}
+
+/* Navbar Styles */
+nav {
+  background: #000000;
+  color: white;
+  padding: 0.1rem 0.1rem; /* Reduced padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  font-size:1rem
+}
+nav ul li a{
+  text-decoration: none;
+  color:white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+nav ul li {
+  display: inline;
+}
+.navbar-signup-login {
+  background-color: white;
+  color: #000000; 
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background 0.3s, color 0.3s;
+}
+
+.navbar-signup-login:hover {
+  background-color: #d1ecff;
+  color: #74a8df;
+}
+
+nav ul li a:hover {
+  color: #d1ecff;
+}
+/* Authentication Form Styling */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin-top: 60px; /* Adjust to prevent overlap with fixed navbar */
+}
+
+.auth-box {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 380px;
+  text-align: center;
+}
+
+/* Toggle Buttons */
+.toggle-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.toggle-buttons button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  background: #ddd;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.toggle-buttons .active {
+  background: #00796b;
+  color: white;
+}
+
+.toggle-buttons button:hover {
+  transform: scale(1.05);
+}
+
+/* Form Styling */
+.auth-title {
+  font-size: 24px;
+  color: #00796b;
+  margin-bottom: 15px;
+}
+
+.auth-error {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Styled Input Fields */
+.styled-input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+
+.styled-input:focus {
+  border-color: #00796b;
+  box-shadow: 0px 0px 6px rgba(0, 121, 107, 0.5);
+}
+
+/* Checkbox Container */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-container input {
+  margin-right: 5px;
+}
+
+/* Submit Button */
+.auth-submit {
+  background: #00796b;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.auth-submit:hover {
+  background: #004d40;
+  transform: scale(1.05);
+}
