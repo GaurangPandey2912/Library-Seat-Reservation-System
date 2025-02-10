@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Seatmap.css";
 
+<<<<<<< HEAD
 const floors = {
   "Ground Floor": [
     ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10"],
@@ -24,6 +25,11 @@ const floors = {
     ["S41", "S42", "S43", "S44", "S45", "S46", "S47", "S48", "S49", "S50"]
   ]
 };
+=======
+const SeatSelector = () => {
+  const [seats, setSeats] = useState(Array(10).fill(false)); // Array of 10 seats, false means unreserved
+  const [reservedSeat, setReservedSeat] = useState(null);
+>>>>>>> f3d7b2beea534d1707ea5014937cc7c8a7d4dc0c
 
 const SeatSelector = () => {
   const [selectedFloor, setSelectedFloor] = useState("Ground Floor");

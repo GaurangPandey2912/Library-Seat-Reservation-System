@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./login.css";
 
-const Homepage = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -72,4 +72,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default Login;

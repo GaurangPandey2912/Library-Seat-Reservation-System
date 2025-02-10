@@ -4,6 +4,8 @@ import logo from "./logo.svg";
 import "./App.css";
 import HomePage from "./Pages/HomePage.js";
 import SeatReservation from "./Pages/Seatmap.js";
+import Login from "./Pages/Login.js";
+import LibraryDashboard from "./Pages/Dashboard.js";
 
 // Homepage Component
 function Home() {
@@ -30,6 +32,11 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/seatMap" element={<SeatReservation />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="Dashboard" element={<LibraryDashboard />} />
+
+
+          
 
 
           
