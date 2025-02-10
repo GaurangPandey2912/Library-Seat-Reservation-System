@@ -32,7 +32,8 @@ body {
   nav ul li a{
     text-decoration: none;
     color:white;
-    font-size: 1rem;
+    font-weight: bold;
+    font-size: 1.1rem;
     transition: color 0.3s;
   }
   nav ul li {
@@ -41,7 +42,7 @@ body {
   .navbar-signup-login {
     background-color: white;
     color: #000000; 
-    padding: 8px 15px;
+    padding: 8px 10px;
     border-radius: 8px;
     font-weight: bold;
     transition: background 0.3s, color 0.3s;
@@ -49,7 +50,7 @@ body {
   
   .navbar-signup-login:hover {
     background-color: #d1ecff;
-    color: #0056b3;
+    color: #74a8df;
   }
   
   nav ul li a:hover {
@@ -60,8 +61,8 @@ body {
   header {
     text-align: center;
     padding: 50px 20px;
-    background: linear-gradient(to right, #f1f1f1, #000000);
-    color: white;
+    background: linear-gradient(to right, #12c1dc,#ffffff);
+    color:rgb(0, 0, 0)
   }
   
   header h2 {
@@ -87,12 +88,12 @@ body {
   }
   
   header button:hover {
-    background: #017ad0;
+    background: #8ebae6;
     transform: scale(1.1);
   }
   
   /* Features Section */
-  section {
+  section { 
     padding: 50px 20px;
     text-align: center;
   }
@@ -111,7 +112,7 @@ body {
   }
   
   .feature-box {
-    background: white;
+    background: rgb(255, 255, 255);
     padding: 20px;
     width: 200px;
     border-radius: 10px;
