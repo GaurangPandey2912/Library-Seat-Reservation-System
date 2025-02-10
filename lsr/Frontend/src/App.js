@@ -8,6 +8,7 @@ import Login from "./Pages/Login.js";
 import LibraryDashboard from "./Pages/Dashboard.js";
 import MetroCities from "./Pages/SelectCity.js";
 import BookIssue from "./Pages/BookIssue.js";
+import Admin from "./Pages/Admin.js";
 
 // Homepage Component
 function Home() {
@@ -38,6 +39,7 @@ function App() {
           <Route path="/Dashboard" element={<LibraryDashboard />} />
           <Route path="/selectCity" element={<MetroCities />} />
           <Route path="/bookIssue" element={<BookIssue />} />
+          <Route path="/admin" element={<Admin />} />
 
 
 
