@@ -1,0 +1,49 @@
+/* BookIssue.css */
+.container {
+    background-color: black;
+    color: teal;
+    padding: 20px;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    border-radius: 10px;
+  }
+  
+  .form-group input {
+    display: block;
+    margin: 10px auto;
+    padding: 8px;
+    border: 1px solid teal;
+    background-color: black;
+    color: teal;
+  }
+  
+  button {
+    background-color: teal;
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: darkcyan;
+  }
+  
+  .issued-books {
+    margin-top: 20px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    background-color: #222;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+  }
+  
