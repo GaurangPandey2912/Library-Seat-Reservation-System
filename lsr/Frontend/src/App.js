@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import HomePage from "./Pages/HomePage.js";
+import SeatReservation from "./Pages/Seatmap.js";
 
 // Homepage Component
 function Home() {
@@ -28,7 +29,8 @@ function App() {
 
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="seatMap" element={<Home />} />
+          <Route path="/seatMap" element={<SeatReservation />} />
+
 
           
         </Routes>
