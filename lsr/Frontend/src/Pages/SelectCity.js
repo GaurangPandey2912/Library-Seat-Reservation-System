@@ -1,7 +1,6 @@
 import React from "react";
-import { Button } from "../Components/ui/button";
 import { Card } from "../Components/ui/card";
-import { MapPin } from "lucide-react"; // Generic icon
+import { MapPin } from "lucide-react"; // Using a generic icon
 
 const cities = [
   { name: "Mumbai", icon: MapPin },
@@ -20,8 +19,8 @@ export default function MetroCities() {
         {cities.map((city, index) => (
           <Card key={index} style={styles.card}>
             <div style={styles.tealBox}>
-              <city.icon style={styles.icon} /> {/* Using MapPin */}
-              <Button style={styles.button}>{city.name}</Button>
+              <city.icon style={styles.icon} />
+              <span style={styles.cityName}>{city.name}</span>
             </div>
           </Card>
         ))}
@@ -75,14 +74,9 @@ const styles = {
     height: "48px",
     color: "black",
   },
-  button: {
-    backgroundColor: "white",
-    color: "black",
-    padding: "10px 20px",
-    borderRadius: "8px",
-    fontSize: "16px",
+  cityName: {
+    fontSize: "18px",
     fontWeight: "bold",
-    border: "none",
-    cursor: "pointer",
+    color: "black",
   },
 };

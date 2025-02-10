@@ -7,6 +7,7 @@ import SeatReservation from "./Pages/Seatmap.js";
 import Login from "./Pages/Login.js";
 import LibraryDashboard from "./Pages/Dashboard.js";
 import MetroCities from "./Pages/SelectCity.js";
+import BookIssue from "./Pages/BookIssue.js";
 
 // Homepage Component
 function Home() {
@@ -36,6 +37,7 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/Dashboard" element={<LibraryDashboard />} />
           <Route path="/selectCity" element={<MetroCities />} />
+          <Route path="/bookIssue" element={<BookIssue />} />
 
 
 
