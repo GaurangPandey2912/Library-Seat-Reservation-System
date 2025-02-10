@@ -1,56 +1,53 @@
 import React, { useState } from "react";
 import "./BookIssue.css";
 
-const BookIssue = () => {
+const LibraryCatalogue = () => {
+  const [search, setSearch] = useState("");
   const [books, setBooks] = useState([]);
-  const [bookTitle, setBookTitle] = useState("");
-  const [borrowerName, setBorrowerName] = useState("");
-  const [issueDate, setIssueDate] = useState("");
 
-  const handleIssueBook = () => {
-    if (bookTitle && borrowerName && issueDate) {
-      setBooks([...books, { bookTitle, borrowerName, issueDate }]);
-      setBookTitle("");
-      setBorrowerName("");
-      setIssueDate("");
-    }
+  const handleSearchChange = async (e) => {
+    setSearch(e.target.value);
+    
+    // Simulate fetching data from a database
+    const fetchedBooks = [
+      { title: "The Great Gatsby", author: "F. Scott Fitzgerald", year: 1925, available: true },
+      { title: "To Kill a Mockingbird", author: "Harper Lee", year: 1960, available: false },
+      { title: "1984", author: "George Orwell", year: 1949, available: true },
+      { title: "Pride and Prejudice", author: "Jane Austen", year: 1813, available: false }
+    ];
+    
+    setBooks(fetchedBooks.filter(book => book.title.toLowerCase().includes(e.target.value.toLowerCase())));
   };
 
   return (
     <div className="container">
-      <h2>Book Issue System</h2>
-      <div className="form-group">
-        <input
-          type="text"
-          placeholder="Book Title"
-          value={bookTitle}
-          onChange={(e) => setBookTitle(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Borrower Name"
-          value={borrowerName}
-          onChange={(e) => setBorrowerName(e.target.value)}
-        />
-        <input
-          type="date"
-          value={issueDate}
-          onChange={(e) => setIssueDate(e.target.value)}
-        />
-        <button onClick={handleIssueBook}>Issue Book</button>
+      <div className="background-overlay"></div>
+      <div className="header">
+        <h1 className="title">Library Catalogue</h1>
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search books..."
+            value={search}
+            onChange={handleSearchChange}
+            className="search-bar"
+          />
+        </div>
       </div>
-      <div className="issued-books">
-        <h3>Issued Books</h3>
-        <ul>
-          {books.map((book, index) => (
-            <li key={index}>
-              {book.bookTitle} - {book.borrowerName} (Issued on: {book.issueDate})
-            </li>
-          ))}
-        </ul>
+      <div className="book-list-grid">
+        {books.map((book, index) => (
+          <div key={index} className="book-item">
+            <h3>{book.title}</h3>
+            <p>By {book.author} ({book.year})</p>
+            <p className={book.available ? "available" : "not-available"}>
+              {book.available ? "Available" : "No Copies Available"}
+            </p>
+            <button className="place-hold-button" disabled={!book.available}>Issue</button>
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default BookIssue;
+export default LibraryCatalogue;
