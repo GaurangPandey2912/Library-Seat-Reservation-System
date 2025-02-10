@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
+import Navbar from "../Components/adminNavbar"; // Adjust if needed
+
 import "react-datepicker/dist/react-datepicker.css";
 import { Pie, Line } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement } from "chart.js";
@@ -41,7 +43,8 @@ const Admin = () => {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "100vh", backgroundColor: "black", padding: "20px" }}>
-      <div style={{ width: "70%", padding: "20px", boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", backgroundColor: "white", borderRadius: "8px", position: "relative", alignItems: "center", justifyContent: "center" }}>
+        <Navbar />
+      <div style={{ width: "70%", padding: "20px", boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", backgroundColor: "white", borderRadius: "8px", position: "relative", alignItems: "center", justifyContent: "center", marginTop:"100px" }}>
         <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "center" }}>
           <div>
             <label style={{ display: "block", marginBottom: "5px", fontWeight: "bold", color: "black" }}>Start Date</label>

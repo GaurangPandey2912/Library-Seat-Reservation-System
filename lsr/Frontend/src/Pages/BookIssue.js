@@ -5,6 +5,9 @@ import { db, collection, getDocs, doc, updateDoc, onSnapshot } from "../firebase
  import "./BookIssue.css"; // Keep existing styles
 import Navbar from "../Components/navbar"; // Adjust if needed
 
+
+  
+
 const BookIssue = () => {
   const [search, setSearch] = useState("");
   const [books, setBooks] = useState([]);
@@ -68,24 +71,27 @@ const BookIssue = () => {
         </div>
       </div>
       <div className="book-list-grid">
-        {books
-          .filter((book) => book.title.toLowerCase().includes(search.toLowerCase()))
-          .map((book) => (
-            <div key={book.id} className="book-item">
-              <h3>{book.title}</h3>
-              <p>By {book.author} ({book.year})</p>
-              <p className={book.copies > 0 ? "available" : "not-available"}>
-                {book.copies > 0 ? `${book.copies} Copies Available` : "Out of Stock"}
-              </p>
-              <button
-                className="place-hold-button"
-                disabled={book.copies === 0}
-                onClick={() => issueBook(book.id, book.copies)}
-              >
-                Issue
-              </button>
-            </div>
-          ))}
+      {books
+  .filter((book) => 
+    book.title && search ? book.title.toLowerCase().includes(search.toLowerCase()) : false
+  )
+  .map((book) => (
+    <div key={book.id} className="book-item">
+      <h3>{book.title || "Untitled"}</h3>
+      <p>By {book.author || "Unknown"} ({book.year || "N/A"})</p>
+      <p className={book.copies > 0 ? "available" : "not-available"}>
+        {book.copies > 0 ? `${book.copies} Copies Available` : "Out of Stock"}
+      </p>
+      <button
+        className="place-hold-button"
+        disabled={book.copies === 0}
+        onClick={() => issueBook(book.id, book.copies)}
+      >
+        Issue
+      </button>
+    </div>
+  ))}
+
       </div>
     </div>
   );
