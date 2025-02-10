@@ -1,0 +1,139 @@
+/* General Styles */
+body {
+    font-family: "Arial", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #000000;
+  }
+  
+  /* Navbar */
+  nav {
+    background: #000000;
+    color: white;
+    padding: 0.1rem 0.1rem; /* Reduced padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+  .brand-logo {
+    width: 250px; /* Adjust as needed */
+    height: 80px;/* Prevents distortion */
+  }
+  
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    font-size:1rem
+  }
+  nav ul li a{
+    text-decoration: none;
+    color:white;
+    font-size: 1rem;
+    transition: color 0.3s;
+  }
+  nav ul li {
+    display: inline;
+  }
+  .navbar-signup-login {
+    background-color: white;
+    color: #000000; 
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .navbar-signup-login:hover {
+    background-color: #d1ecff;
+    color: #0056b3;
+  }
+  
+  nav ul li a:hover {
+    color: #d1ecff;
+  }
+  
+  /* Hero Section */
+  header {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(to right, #f1f1f1, #000000);
+    color: white;
+  }
+  
+  header h2 {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+  
+  header p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
+  header button {
+    background: white;
+    color: #000000;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  header button:hover {
+    background: #017ad0;
+    transform: scale(1.1);
+  }
+  
+  /* Features Section */
+  section {
+    padding: 50px 20px;
+    text-align: center;
+  }
+  
+  section h3 {
+    font-size: 2rem;
+    color: #000000;
+  }
+  
+  .features-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  
+  .feature-box {
+    background: white;
+    padding: 20px;
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .feature-box:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Footer */
+  footer {
+    background: #000000;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+  }
+  
+  footer p {
+    margin: 0;
+    font-size: 1rem;
+  }
+  

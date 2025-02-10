@@ -1,56 +1,55 @@
-import React, { useState } from "react";
+import React from "react";
+import "./HomePage.css";
 
-const Homepage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!email || !password) {
-      setError("Both fields are required!");
-      return;
-    }
-    setError("");
-    alert(`Logged in as: ${email}`);
-  };
-
+const HomePage = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-        <h2 className="text-2xl font-bold text-center text-teal-600 mb-4">
-          Login
-        </h2>
-        {error && <p className="text-red-500 text-sm text-center">{error}</p>}
-        <form onSubmit={handleSubmit} className="flex flex-col">
-          <label className="text-gray-700">Email</label>
-          <input
-            type="email"
-            className="border p-2 rounded mb-3"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-          />
+    <div>
+      {/* Navbar */}
+      <nav>
+        <div>
+          <img src="/brandlogo.png" alt="Brand Logo" className="brand-logo" />
+        </div>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <a href="#Login" className="navbar-signup-login">SignUp/LogIn</a>
+          </li>
+        </ul>
+      </nav>
 
-          <label className="text-gray-700">Password</label>
-          <input
-            type="password"
-            className="border p-2 rounded mb-3"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter your password"
-          />
+      {/* Hero Section */}
+      <header>
+        <h2>OpenChair</h2>
+        <p>Your trusted solution for silence related issues. <br />
+            Reserve. Read. Relax.</p>
+        <button>Select Library</button>
+      </header>
 
-          <button
-            type="submit"
-            className="bg-teal-600 text-white py-2 rounded hover:bg-teal-700 transition"
-          >
-            Login
-          </button>
-        </form>
-      </div>
+      {/* Features Section */}
+      <section>
+        <h3>Why Choose Us?</h3>
+        <div className="features-container">
+          {[
+            "Reserve Seats",
+            "Check Book Availability",
+            "Membership",
+            "24/7 Support"
+          ].map((feature, index) => (
+            <div key={index} className="feature-box">
+              {feature}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer>
+        <p>© 2025 OpenChair. All rights reserved.</p>
+      </footer>
     </div>
   );
 };
 
-export default Homepage;
+export default HomePage;
