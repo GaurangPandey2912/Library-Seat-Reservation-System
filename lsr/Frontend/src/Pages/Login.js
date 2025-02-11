@@ -26,8 +26,15 @@ const Login = () => {
         alert("Sign-up successful! You can now log in.");
       } else {
         await signInWithEmailAndPassword(auth, email, password);
-        alert(`Logged in as: ${email} ${isAdmin ? "(Admin)" : ""}`);
-        navigate("/Dashboard"); // Redirect to the dashboard
+        
+        // Check if admin credentials are entered
+        if (isAdmin && email === "admin@openchair.com" && password === "admin123") {
+          alert("Logged in as Admin");
+          navigate("/admin"); // Redirect to admin page
+        } else {
+          alert(`Logged in as: ${email}`);
+          navigate("/Dashboard"); // Redirect to user dashboard
+        }
       }
       setError("");
     } catch (err) {

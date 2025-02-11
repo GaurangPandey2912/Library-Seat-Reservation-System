@@ -1,7 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getAuth, signOut } from "firebase/auth";
 
 const Navbar = () => {
+  const navigate = useNavigate(); // Hook to redirect user after logout
+  const auth = getAuth();
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      alert("Logged out successfully!");
+      navigate("/login"); // Redirect user to login page
+    } catch (error) {
+      console.error("Logout failed:", error);
+      alert("Error logging out: " + error.message);
+    }
+  };
+
   return (
     <nav style={styles.navbar}>
       <Link to="/">
@@ -12,7 +27,7 @@ const Navbar = () => {
         <li><Link to="/SeatMap" style={styles.navItem}>Book Seats</Link></li>
         <li><Link to="/BookIssue" style={styles.navItem}>Issue Book</Link></li>
         <li style={styles.logoutButton}>
-          <Link to="/logout" style={styles.logoutItem}>Logout</Link>
+          <button onClick={handleLogout} style={styles.logoutItem}>Logout</button>
         </li>
       </ul>
     </nav>
@@ -72,14 +87,17 @@ const styles = {
     padding: "0 20px",
     backgroundColor: "black",
     color: "teal",
+    border: "none",
+    cursor: "pointer",
     transition: "background 0.3s ease-in-out, color 0.3s ease-in-out",
   },
 };
 
-// Apply hover effect dynamically
+// Apply hover effect dynamically to all buttons and links
 const styleSheet = document.styleSheets[0];
 styleSheet.insertRule(`
-  nav ul li a:hover {
+  nav ul li a:hover, 
+  nav ul li button:hover {
     background-color: white !important;
     color: black !important;
   }
