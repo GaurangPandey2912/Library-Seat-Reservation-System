@@ -27,7 +27,13 @@ const Login = () => {
       } else {
         await signInWithEmailAndPassword(auth, email, password);
         alert(`Logged in as: ${email} ${isAdmin ? "(Admin)" : ""}`);
-        navigate("/Dashboard"); // Redirect to the dashboard
+
+        // Redirect based on user role
+        if (isAdmin) {
+          navigate("/admin"); // Redirect to Admin Panel
+        } else {
+          navigate("/dashboard"); // Redirect to Dashboard
+        }
       }
       setError("");
     } catch (err) {
