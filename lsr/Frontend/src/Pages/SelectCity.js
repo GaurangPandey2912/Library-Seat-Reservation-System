@@ -1,54 +1,107 @@
 import React, { useState } from "react";
-import Navbar from "../Components/navbar"; // Import Navbar
+import Navbar from "../Components/navbar";
 import { Card } from "../Components/ui/card";
-import { MapPin } from "lucide-react"; // Using a generic icon
+import { MapPin, Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-const cities = [
-  { name: "Mumbai", icon: MapPin },
-  { name: "Delhi", icon: MapPin },
-  { name: "Bangalore", icon: MapPin },
-  { name: "Chennai", icon: MapPin },
-  { name: "Kolkata", icon: MapPin },
-  { name: "Hyderabad", icon: MapPin },
-];
+// Dummy data for each city
+const cityData = {
+  Mumbai: ["Borivali", "Andheri", "Colaba", "Juhu Beach"],
+  Delhi: ["Saket", "Dwarka", "Connaught Place", "Chandni Chowk"],
+  Bangalore: ["MG Road", "Lalbagh", "Electronic City", "Indiranagar"],
+  Chennai: ["Marina Beach", "T Nagar", "Guindy", "Velachery"],
+  Kolkata: ["Howrah Bridge", "Victoria Memorial", "Park Street", "Salt Lake"],
+  Hyderabad: ["Charminar", "Hitech City", "Gachibowli", "Banjara Hills"],
+};
 
 export default function MetroCities() {
   const [selectedCity, setSelectedCity] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+  const navigate = useNavigate();
 
   const handleCityClick = (cityName) => {
-    setSelectedCity(cityName); // Set the clicked city
+    setSelectedCity(cityName);
+    setSearchTerm("");
+    setFilteredSuggestions(cityData[cityName] || []);
+  };
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+
+    // Filter suggestions based on input
+    if (selectedCity) {
+      const suggestions = cityData[selectedCity].filter((place) =>
+        place.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredSuggestions(suggestions);
+    }
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setSearchTerm(suggestion);
+    setFilteredSuggestions([]); // Hide suggestions after selection
+  };
+
+  const handleSearchSubmit = () => {
+    if (searchTerm) {
+      navigate("/SeatMap"); // Redirect to the seat map page
+    }
   };
 
   return (
     <div style={styles.container}>
-      <Navbar /> {/* Navbar added here */}
+      <Navbar />
 
       <h1 style={styles.heading}>Select City</h1>
       <div style={styles.grid}>
-        {cities.map((city, index) => (
-          <div 
-            key={index} 
-            style={styles.cardContainer} 
-            onClick={() => handleCityClick(city.name)}
+        {Object.keys(cityData).map((city, index) => (
+          <div
+            key={index}
+            style={styles.cardContainer}
+            onClick={() => handleCityClick(city)}
           >
             <Card style={styles.card}>
               <div style={styles.tealBox}>
-                <city.icon style={styles.icon} />
-                <span style={styles.cityName}>{city.name}</span>
+                <MapPin style={styles.icon} />
+                <span style={styles.cityName}>{city}</span>
               </div>
             </Card>
           </div>
         ))}
       </div>
 
-      {/* Show Search Bar when a city is clicked */}
+      {/* Search Bar and Suggestions */}
       {selectedCity && (
         <div style={styles.searchContainer}>
-          <input 
-            type="text" 
-            placeholder={`Search in ${selectedCity}...`} 
-            style={styles.searchBar} 
-          />
+          <div style={styles.searchWrapper}>
+            <input
+              type="text"
+              placeholder={`Search in ${selectedCity}...`}
+              value={searchTerm}
+              onChange={handleSearchChange}
+              style={styles.searchBar}
+            />
+            <button onClick={handleSearchSubmit} style={styles.searchButton}>
+              <Search />
+            </button>
+          </div>
+
+          {/* Suggestions Dropdown */}
+          {filteredSuggestions.length > 0 && (
+            <ul style={styles.suggestionsList}>
+              {filteredSuggestions.map((suggestion, index) => (
+                <li
+                  key={index}
+                  style={styles.suggestionItem}
+                  onClick={() => handleSuggestionClick(suggestion)}
+                >
+                  {suggestion}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
     </div>
@@ -71,7 +124,7 @@ const styles = {
     fontSize: "24px",
     color: "teal",
     fontWeight: "bold",
-    marginTop: "80px", // Added margin so the navbar doesn't overlap
+    marginTop: "80px",
   },
   grid: {
     display: "grid",
@@ -81,11 +134,8 @@ const styles = {
     maxWidth: "800px",
   },
   cardContainer: {
-    cursor: "pointer", // 👈 Make entire card clickable
+    cursor: "pointer",
     transition: "transform 0.2s",
-  },
-  cardContainerHover: {
-    transform: "scale(1.05)",
   },
   card: {
     backgroundColor: "#333",
@@ -117,17 +167,51 @@ const styles = {
     marginTop: "20px",
     width: "80%",
     maxWidth: "400px",
+    position: "relative",
   },
-  searchBar: {
-    width: "100%",
-    padding: "10px",
-    fontSize: "16px",
+  searchWrapper: {
+    display: "flex",
+    alignItems: "center",
     borderRadius: "8px",
     border: "1px solid teal",
+    backgroundColor: "white",
+    overflow: "hidden",
+  },
+  searchBar: {
+    flex: 1,
+    padding: "10px",
+    fontSize: "16px",
+    border: "none",
     outline: "none",
     color: "black",
+  },
+  searchButton: {
+    padding: "10px",
+    backgroundColor: "teal",
+    border: "none",
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  suggestionsList: {
+    position: "absolute",
+    top: "100%",
+    left: 0,
+    width: "100%",
     backgroundColor: "white",
+    border: "1px solid teal",
+    borderRadius: "4px",
+    listStyle: "none",
+    padding: 0,
+    margin: "5px 0",
+    zIndex: 10,
+  },
+  suggestionItem: {
+    padding: "10px",
+    cursor: "pointer",
+    borderBottom: "1px solid teal",
+    color: "black",
   },
 };
-
 
