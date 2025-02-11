@@ -113,3 +113,115 @@
     color: teal;
   }
   
+  /* Booking Form */
+.booking-form {
+  width: 50%;
+  max-width: 600px;
+  background-color: rgba(0, 128, 128, 0.9);
+  color: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Larger Form */
+.large-form {
+  width: 60%;
+  max-width: 700px;
+  padding: 30px;
+}
+
+/* Form Group */
+.form-group {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 15px;
+}
+
+/* Buttons */
+.confirm-btn,
+.cancel-btn {
+  width: 48%;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s;
+}
+
+.confirm-btn {
+  background-color: #00ffcc;
+  color: black;
+}
+
+.cancel-btn {
+  background-color: #ff3333;
+  color: white;
+}
+
+.confirm-btn:hover {
+  background-color: #00cc99;
+  transform: scale(1.05);
+}
+
+.cancel-btn:hover {
+  background-color: #cc0000;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .booking-form {
+    width: 80%;
+    max-width: 500px;
+  }
+
+  .large-form {
+    width: 85%;
+  }
+
+  .confirm-btn,
+  .cancel-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+  }
+}
