@@ -43,8 +43,12 @@ const Admin = () => {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "100vh", backgroundColor: "black", padding: "20px" }}>
-        <Navbar />
-      <div style={{ width: "70%", padding: "20px", boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", backgroundColor: "white", borderRadius: "8px", position: "relative", alignItems: "center", justifyContent: "center", marginTop:"100px" }}>
+      <Navbar />
+      
+      {/* Heading - Always Visible */}
+      <h2 style={{ color: "white", fontSize: "24px", fontWeight: "bold", marginBottom: "20px" }}>View Statistics</h2>
+
+      <div style={{ width: "70%", padding: "20px", boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", backgroundColor: "white", borderRadius: "8px", position: "relative", alignItems: "center", justifyContent: "center", marginTop: "20px" }}>
         <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "center" }}>
           <div>
             <label style={{ display: "block", marginBottom: "5px", fontWeight: "bold", color: "black" }}>Start Date</label>
@@ -69,7 +73,7 @@ const Admin = () => {
               style={{ padding: "8px", border: "1px solid #ccc", borderRadius: "4px", width: "100%" }}
             />
           </div>
-          <button 
+          <button
             onClick={() => setShowChart(true)}
             style={{ padding: "10px 15px", backgroundColor: "#008080", color: "white", border: "none", borderRadius: "4px", cursor: "pointer", fontWeight: "bold" }}>
             Go

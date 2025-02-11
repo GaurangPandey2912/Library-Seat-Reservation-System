@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
-import Navbar from "../Components/navbar";
+
 import "./Login.css";
 
 const Login = () => {
@@ -44,7 +44,19 @@ const Login = () => {
 
   return (
     <>
-      <Navbar />
+      <nav>
+        <div>
+          <img src="/brandlogo.png" alt="Brand Logo" className="brand-logo" />
+        </div>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <a href="login" className="navbar-signup-login">SignUp/LogIn</a>
+          </li>
+        </ul>
+      </nav>
       <div className="auth-container">
         <div className="auth-box">
           <div className="toggle-buttons">
