@@ -97,13 +97,16 @@ const Login = () => {
               />
             </div>
 
-            <div className="form-group checkbox-container">
-              <input
-                type="checkbox"
-                checked={isAdmin}
-                onChange={() => setIsAdmin(!isAdmin)}
-              />
-              <label>Login as Admin</label>
+            <div className="form-group">
+              <div className="checkbox-container">
+                <input
+                  type="checkbox"
+                  id="adminCheckbox"
+                  checked={isAdmin}
+                  onChange={() => setIsAdmin(!isAdmin)}
+                />
+                <label htmlFor="adminCheckbox">Login as Admin</label>
+              </div>
             </div>
 
             <button type="submit" className="auth-submit">
