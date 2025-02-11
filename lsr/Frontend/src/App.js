@@ -42,8 +42,11 @@ function App() {
           <Route path="/selectCity" element={<MetroCities />} />
           <Route path="/bookIssue" element={<BookIssue />} />
           <Route path="/admin" element={<Admin />} />
+
           <Route path="/addBook" element={<AddBook />} />
-          <Route path="/test" element={<TestFirestore />} />
+          
+
+          
 
 
 
