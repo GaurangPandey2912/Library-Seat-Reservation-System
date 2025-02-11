@@ -1,23 +1,54 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
+import { db, collection, getDocs } from "../firebase";
 import Navbar from "../Components/navbar";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const LibraryDashboard = () => {
-  const totalSeats = 100;
-  const occupiedSeats = 63;
-  const bookedPercentage = (occupiedSeats / totalSeats) * 100;
+  const [totalSeats, setTotalSeats] = useState(0);
+  const [occupiedSeats, setOccupiedSeats] = useState(0);
+  const [floorData, setFloorData] = useState({});
+
+  useEffect(() => {
+    fetchSeatData();
+  }, []);
+
+  const fetchSeatData = async () => {
+    const seatsRef = collection(db, "seats");
+    const querySnapshot = await getDocs(seatsRef);
+    let total = 0;
+    let occupied = 0;
+    let floorCount = { "Ground Floor": 0, "First Floor": 0, "Second Floor": 0 };
+
+    querySnapshot.forEach((doc) => {
+      total++;
+      const data = doc.data();
+      if (data.reservations && data.reservations.length > 0) {
+        occupied++;
+        const floor = doc.id.split("-")[0]; // Extract floor from seat ID
+        if (floorCount[floor] !== undefined) {
+          floorCount[floor] += 1;
+        }
+      }
+    });
+
+    setTotalSeats(total);
+    setOccupiedSeats(occupied);
+    setFloorData(floorCount);
+  };
+
+  const bookedPercentage = totalSeats > 0 ? (occupiedSeats / totalSeats) * 100 : 0;
 
   const peopleData = {
-    labels: ["Ground Floor", "First Floor", "Second Floor"],
+    labels: Object.keys(floorData),
     datasets: [
       {
         label: "People Count",
-        data: [20, 25, 18],
+        data: Object.values(floorData),
         backgroundColor: "#00cccc",
         borderColor: "#008080",
         borderWidth: 1,
@@ -26,13 +57,13 @@ const LibraryDashboard = () => {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", maxHeight: "100vh", backgroundColor: "black", color: "#008080", paddingTop:"100px" }}>
-        <Navbar />
+    <div style={{ display: "flex", flexDirection: "column", maxHeight: "100vh", backgroundColor: "black", color: "#008080", paddingTop: "100px" }}>
+      <Navbar />
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
         <div style={{ width: "40%", backgroundColor: "#007070", color: "white", boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "column", alignItems: "center" }}>
           <h2 style={{ fontSize: "18px", fontWeight: "600", marginBottom: "8px" }}>Seats Booked</h2>
           <div style={{ width: "96px", height: "96px", backgroundColor: "#008080", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%", padding: "10px" }}>
-            <div style={{ width: "100%",marginBottom:"0" }}>
+            <div style={{ width: "100%", marginBottom: "0" }}>
               <CircularProgressbar
                 value={bookedPercentage}
                 text={`${Math.round(bookedPercentage)}%`}
@@ -51,25 +82,6 @@ const LibraryDashboard = () => {
           <Bar data={peopleData} options={{ responsive: true, plugins: { legend: { display: false } } }} />
         </div>
       </div>
-      <div style={{ marginTop: "-10%", display: "flex", flexDirection: "column", width: "40%", gap: "10px" }}>
-        <button style={{ padding: "10px 20px", backgroundColor: "grey", border: "none", color: "white", fontSize: "16px", borderRadius: "8px", cursor: "pointer", width: "100%", transition: "background-color 0.3s" }}
-          onMouseOver={(e) => e.target.style.backgroundColor = "#008080"}
-          onMouseOut={(e) => e.target.style.backgroundColor = "grey"}>
-          Book Seat
-        </button>
-        <button style={{ padding: "10px 20px", backgroundColor: "grey", border: "none", color: "white", fontSize: "16px", borderRadius: "8px", cursor: "pointer", width: "100%", transition: "background-color 0.3s" }}
-          onMouseOver={(e) => e.target.style.backgroundColor = "#008080"}
-          onMouseOut={(e) => e.target.style.backgroundColor = "grey"}>
-          Issue Book
-        </button>
-      </div>
-      <style jsx global>{`
-        body {
-          background-color: black;
-          margin: 0;
-          padding: 0;
-        }
-      `}</style>
     </div>
   );
 };
