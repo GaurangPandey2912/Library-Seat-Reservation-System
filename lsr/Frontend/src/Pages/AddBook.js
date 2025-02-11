@@ -26,6 +26,7 @@ const AddBook = () => {
     try {
       const docRef = await addDoc(bookCollection, {
         bookName,
+        title: bookName,
         author,
         category,
         copies: copiesArray,

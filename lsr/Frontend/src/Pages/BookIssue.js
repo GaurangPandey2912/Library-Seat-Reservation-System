@@ -1,29 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { db, collection, getDocs, doc, updateDoc, onSnapshot } from "../firebase.js";
+import { db } from "../firebase"; 
+import { collection, doc, updateDoc, onSnapshot } from "firebase/firestore";
 
- // Keep existing Firebase connection
- import "./BookIssue.css"; // Keep existing styles
-import Navbar from "../Components/navbar"; // Adjust if needed
-
-
-  
+import "./BookIssue.css"; 
+import Navbar from "../Components/navbar"; 
 
 const BookIssue = () => {
   const [search, setSearch] = useState("");
   const [books, setBooks] = useState([]);
 
-  // Fetch books in real-time from Firestore
+  // Fetch books in real-time
   useEffect(() => {
     const booksRef = collection(db, "books");
     const unsubscribe = onSnapshot(booksRef, (snapshot) => {
       const bookList = snapshot.docs.map((doc) => ({
-        id: doc.id, // Firestore document ID (needed for updates)
+        id: doc.id, 
         ...doc.data(),
       }));
       setBooks(bookList);
     });
 
-    return () => unsubscribe(); // Cleanup listener on unmount
+    return () => unsubscribe(); 
   }, []);
 
   // Handle book search
@@ -31,7 +28,7 @@ const BookIssue = () => {
     setSearch(e.target.value);
   };
 
-  // Function to issue a book (reduce available copies)
+  // Issue a book (reduce copies count)
   const issueBook = async (bookId, currentCopies) => {
     if (currentCopies > 0) {
       try {
@@ -71,27 +68,25 @@ const BookIssue = () => {
         </div>
       </div>
       <div className="book-list-grid">
-      {books
-  .filter((book) => 
-    book.title && search ? book.title.toLowerCase().includes(search.toLowerCase()) : false
-  )
-  .map((book) => (
-    <div key={book.id} className="book-item">
-      <h3>{book.title || "Untitled"}</h3>
-      <p>By {book.author || "Unknown"} ({book.year || "N/A"})</p>
-      <p className={book.copies > 0 ? "available" : "not-available"}>
-        {book.copies > 0 ? `${book.copies} Copies Available` : "Out of Stock"}
-      </p>
-      <button
-        className="place-hold-button"
-        disabled={book.copies === 0}
-        onClick={() => issueBook(book.id, book.copies)}
-      >
-        Issue
-      </button>
-    </div>
-  ))}
+        {books
+          .filter((book) => (book.bookName ?? "").toLowerCase().includes(search.toLowerCase())) // ✅ FIXED ERROR
+          .map((book) => (
+            <div key={book.id} className="book-item">
+  <h3>{book.bookName || book.title || "Unknown Title"}</h3>  {/* ✅ Fixed Title Handling */}
+  <p>By {book.author || "Unknown Author"} ({book.year || "Unknown Year"})</p>
+  <p className={book.copies > 0 ? "available" : "not-available"}>
+    {book.copies > 0 ? `${book.copies} Copies Available` : "Out of Stock"}
+  </p>
+  <button
+    className="place-hold-button"
+    disabled={book.copies === 0}
+    onClick={() => issueBook(book.id, book.copies)}
+  >
+    Issue
+  </button>
+</div>
 
+          ))}
       </div>
     </div>
   );
