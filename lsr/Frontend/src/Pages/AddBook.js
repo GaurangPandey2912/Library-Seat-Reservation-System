@@ -14,29 +14,33 @@ const AddBook = () => {
       alert("Please fill in all fields");
       return;
     }
-
+  
     const bookCollection = collection(db, "books");
     const copiesArray = [];
     for (let i = 0; i < parseInt(copies, 10); i++) {
       copiesArray.push({ id: uuidv4(), available: true });
     }
-
+  
     try {
-      await addDoc(bookCollection, {
+      const docRef = await addDoc(bookCollection, {
         bookName,
         author,
         copies: copiesArray,
         timestamp: new Date(),
       });
+  
+      console.log("Book added successfully with ID:", docRef.id);
       alert("Book added successfully!");
+      
       setBookName("");
       setAuthor("");
       setCopies("");
     } catch (error) {
-      console.error("Error adding book: ", error);
-      alert("Error adding book");
+      console.error("Error adding book:", error);
+      alert(`Error: ${error.message}`);
     }
   };
+  
 
   return (
     <div className="p-4 max-w-md mx-auto mt-10 border border-gray-300 rounded-lg shadow-md">

@@ -10,6 +10,7 @@ import MetroCities from "./Pages/SelectCity.js";
 import BookIssue from "./Pages/BookIssue.js";
 import Admin from "./Pages/Admin.js";
 import AddBook from "./Pages/AddBook.js";
+import TestFirestore from "./Pages/test.js";
 
 // Homepage Component
 function Home() {
@@ -42,6 +43,7 @@ function App() {
           <Route path="/bookIssue" element={<BookIssue />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/addBook" element={<AddBook />} />
+          <Route path="/test" element={<TestFirestore />} />
 
 
 
